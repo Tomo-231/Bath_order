@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>風呂順＆当番</title>
+        <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{ font-family: sans-serif;
+                padding: 20px 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>風呂順＆当番</h1>
+        <a>日付：<input type = "date" id = "date"></a>
+        <h2>風呂順</h2>
+        <a>1番目：<a id = "1st"></a></a><br>
+        <a>2番目：<a id = "2nd"></a></a><br>
+        <a>3番目：<a id = "3ed"></a></a><br>
+        <a>4番目：<a id = "4th"></a></a><br>
+        <a><strong>掃除：<a id = "cleaner"></a></strong></a>
+        <h2>当番（朝）</h2>
+        <a>お皿ふき：<a id = "plate"></a></a><br>
+        <a>結露ふき：<a id = "window"></a></a>
+        <script>
+            const today = new Date().toISOString().split("T")[0];
+            document.getElementById("date").value = today;
+            const Name1text = document.getElementById("1st");
+            const Name2text = document.getElementById("2nd");
+            const Name3text = document.getElementById("3ed");
+            const Name4text = document.getElementById("4th");
+            const NameCleaner = document.getElementById("cleaner");
+            const DatePicker = document.getElementById("date");
+            const PlateHelper = document.getElementById("plate");
+            const WindowHelper = document.getElementById("window");
+            function Show(){
+                var menbers = ["B","S","T","K"];
+                const dateString = DatePicker.value; 
+                if (!dateString) return;
+                const selectedDate = new Date(dateString); // 文字列をDateオブジェクトに変換
+                const milliSeconds = selectedDate.getTime();
+                const days = Math.floor(milliSeconds / (1000 * 60 * 60 * 24));
+                const number = (days + 2) % 4
+                if(!isNaN(days)){
+                    for(let i = 0; i < number;i++){
+                        menbers.push(menbers[0]);
+                        menbers.splice(0,1);
+                    }
+                    console.log(menbers);
+                    Name1text.innerText = menbers[0];
+                    Name2text.innerText = menbers[1];
+                    Name3text.innerText = menbers[2];
+                    Name4text.innerText = menbers[3];
+                    NameCleaner.innerText = menbers[3];
+                }
+                const week = (days - 3) % 14;
+                if(!isNaN(week)){
+                    if(week < 7){
+                        WindowHelper.innerText = "K";
+                        PlateHelper.innerText = "T";
+                    }else{
+                        WindowHelper.innerText = "T";
+                        PlateHelper.innerText = "K";
+                    }
+                }
+            }
+            DatePicker.addEventListener("input", (e) =>{
+                Show();
+            });
+            Show();
+        </script>
+    </body>
+</html>
