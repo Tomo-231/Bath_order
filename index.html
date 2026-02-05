@@ -7,6 +7,22 @@
             body{ font-family: sans-serif;
                 padding: 20px 20px;
             }
+            .nice-size-img {
+                /* 画像の横幅を調整（例：300px） */
+                width: 300px;
+            
+                /* 画面が狭いときは自動で小さくする */
+                max-width: 100%;
+                height: auto;
+            
+            
+                /* 影をつけて浮かせる（お好みで） */
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            
+                /* 中央寄せにしたい場合 */
+                display: block;
+                margin: 20px auto;
+            }
         </style>
         <link rel="icon" href="familyonsen.png" type="image/png">
         <link rel="manifest" href="manifest.json">
@@ -24,6 +40,9 @@
         <h2>当番（朝）</h2>
         <a>お皿ふき：<a id = "plate"></a></a><br>
         <a>結露ふき：<a id = "window"></a></a>
+        <br>
+        <br>
+        <img src="familyonsen.png" class="nice-size-img">
         <script>
             const today = new Date().toISOString().split("T")[0];
             document.getElementById("date").value = today;
