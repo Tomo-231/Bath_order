@@ -39,11 +39,11 @@
                 const selectedDate = new Date(dateString); // 文字列をDateオブジェクトに変換
                 const milliSeconds = selectedDate.getTime();
                 const days = Math.floor(milliSeconds / (1000 * 60 * 60 * 24));
-                const number = (days + 2) % 4
+                const number = (days) % 4
                 if(!isNaN(days)){
                     for(let i = 0; i < number;i++){
-                        menbers.push(menbers[0]);
-                        menbers.splice(0,1);
+                        menbers.push(menbers[0],menbers[1],menbers[2]);
+                        menbers.splice(0,3);
                     }
                     console.log(menbers);
                     Name1text.innerText = menbers[0];
